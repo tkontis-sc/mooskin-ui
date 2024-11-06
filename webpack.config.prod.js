@@ -29,17 +29,17 @@ const commonWebpackConfig = require('./webpack.config.common');
 
 const prodWebPackConfig = merge(commonWebpackConfig, {
 	entry: './components/index/index.ts',
-
 	output: {
 		path: path.resolve(__dirname, distFolder),
 		filename: 'index/index.js',
-		library: 'mooskin',
-		libraryTarget: 'umd',
-		umdNamedDefine: true,
+		library: {
+			name: 'mooskin',
+			type: 'umd',
+			umdNamedDefine: true
+		},
 		globalObject: 'this',
 		publicPath: '../'
 	},
-
 	module: {
 		rules: [
 			{
@@ -67,37 +67,31 @@ const prodWebPackConfig = merge(commonWebpackConfig, {
 						loader: 'css-loader',
 						options: {
 							importLoaders: 1,
-							localIdentName: '[local]___[hash:base64:5]',
-							modules: true
+							modules: {
+								localIdentName: '[local]___[hash:base64:5]'
+							}
 						}
 					},
-
 					'postcss-loader'
 				]
 			},
 			{
 				test: /\.css$/,
-				exclude: /\*/,
 				include: /node_modules/,
 				use: [
 					MiniCssExtractPlugin.loader,
-					{
-						loader: 'css-loader',
-						options: {
-							// importLoaders: 1,
-						}
-					}
-					// 'postcss-loader'
+					'css-loader'
 				]
 			}
 		]
 	},
-
 	plugins: [
-		new MiniCssExtractPlugin({ fallback: 'style-loader', filename: 'index/style.css', allChunks: true })
+		new MiniCssExtractPlugin({ filename: 'index/style.css' })
 	],
-
-	externals: ['react', 'react-dom'],
+	externals: {
+		react: 'react',
+		'react-dom': 'react-dom'
+	}
 });
 
 module.exports = prodWebPackConfig;
