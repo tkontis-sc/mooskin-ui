@@ -7,6 +7,9 @@
 	"publishConfig": {
 		"access": "public"
 	},
+	"engines": {
+		"node": ">=18.20.4"
+	},
 	"scripts": {
 		"prepare": "webpack --config webpack.config.prod.js -p",
 		"build:playground": "webpack --config webpack.config.dev.js -p",
