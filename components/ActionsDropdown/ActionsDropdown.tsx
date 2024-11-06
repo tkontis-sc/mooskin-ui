@@ -41,7 +41,7 @@ export const ActionsDropdown: React.FC<IActionsDropdownComponentProps> = withMoo
 		callback?: (e: React.MouseEvent<HTMLElement>, data: IInputCallbackData) => void
 	) => {
 		props.onClickItem && props.onClickItem(e, data);
-		callback && callback(e, data);
+		callback?.(e, data);
 	};
 
 	const recurseChildren = (children: any): any => {

@@ -72,7 +72,7 @@ export const Drawer: React.FC<IDrawerComponentProps> = withMooskinContext((props
 
 	const batchClickHandler = (e: React.MouseEvent<HTMLElement>, callback?: (e: React.MouseEvent<HTMLElement>) => void) => {
 		props.onClose && props.onClose(e);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	const recurseChildren = (children: any): any => {

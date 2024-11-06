@@ -32,7 +32,7 @@ export const Pagination: React.FC<IPaginationComponentProps> = withMooskinContex
 
 	const batchClickHandler = (e: React.MouseEvent<HTMLElement>, page: number, callback?: (e: React.MouseEvent<HTMLElement>) => void) => {
 		props.onClickButton && props.onClickButton(e, page);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	const onArrowClick = (page: number) => {

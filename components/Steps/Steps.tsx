@@ -22,7 +22,7 @@ export const Steps: React.FC<IStepsComponentProps> = withMooskinContext((props) 
 		callback?: (e: React.MouseEvent<HTMLElement>) => void
 	) => {
 		props.onClickStep && props.onClickStep(e, activeId);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	const getActiveItem = (activeId?: string | number) => {

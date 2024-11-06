@@ -23,7 +23,7 @@ export const Tabs: React.FC<ITabsComponentProps> = withMooskinContext((props) =>
 		callback?: (e: React.MouseEvent<HTMLElement>) => void
 	) => {
 		props.onClickTab && props.onClickTab(e, activeId);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	const getActiveItem = (activeId?: string | number) => {

@@ -23,7 +23,7 @@ export const Tags: React.FC<ITagsComponentProps> = withMooskinContext((props) =>
 		callback?: (e: React.MouseEvent<HTMLElement>) => void
 	) => {
 		props.onClickTag && props.onClickTag(e, data);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	const onRemoveTag = (e: React.MouseEvent<HTMLElement>, i: number) => {

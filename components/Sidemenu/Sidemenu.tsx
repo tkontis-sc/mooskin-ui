@@ -19,7 +19,7 @@ export const Sidemenu: React.FC<ISidemenuComponentProps> = withMooskinContext((p
 		callback?: (e: React.MouseEvent<HTMLElement>) => void
 	) => {
 		props.onClickItem && props.onClickItem(e, value);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	const recurseChildren = (children: any): any => {

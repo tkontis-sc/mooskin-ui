@@ -24,7 +24,7 @@ export const Radio: React.FC<IRadioComponentProps> = withMooskinContext((props) 
 	const batchClickHandler = (e: React.MouseEvent<HTMLElement>, callback?: (e: React.MouseEvent<HTMLElement>) => void) => {
 		if (!props.disabled) {
 			onClick(e);
-			callback && callback(e);
+			callback?.(e);
 		}
 	};
 

@@ -38,7 +38,7 @@ export const Modal: React.FC<IModalComponentProps> = withMooskinContext((props) 
 
 	const batchClickHandler = (e: React.MouseEvent<HTMLElement>, callback?: (e: React.MouseEvent<HTMLElement>) => void) => {
 		props.onClose && props.onClose(e);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	// on press esc button close Drawer

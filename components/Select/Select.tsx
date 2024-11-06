@@ -72,13 +72,13 @@ export const Select: React.FC<ISelectComponentProps> = withMooskinContext((props
 		}
 
 		props.onChangeSelect && props.onChangeSelect(e, { dataLabel: props.dataLabel, value: returnValue });
-		callback && callback(e);
+		callback?.(e);
 		!selectedAsArray && toggleList();
 	};
 
 	const batchFilterHandler = (e: React.ChangeEvent<HTMLInputElement>, callback?: (e: React.ChangeEvent<HTMLInputElement>) => void) => {
 		setFilterValue(e.target.value);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	const toggleList = () => {

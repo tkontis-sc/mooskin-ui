@@ -31,7 +31,7 @@ export const Expandable: React.FC<IExpandableComponentProps> = withMooskinContex
 	) => {
 		const value = props.activeItem === activeId ? '' : activeId;
 		props.onClickItem && props.onClickItem(e, value);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	const getActiveItem = (activeId?: string | number) => {

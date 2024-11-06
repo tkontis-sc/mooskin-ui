@@ -47,7 +47,7 @@ export const InputContainer: React.FC<IInputContainerComponentProps> = withMoosk
 		callback?: (e: React.ChangeEvent<HTMLInputElement>) => void
 	) => {
 		props.onChangeInput && props.onChangeInput(e, data);
-		callback && callback(e);
+		callback?.(e);
 	};
 
 	const onDropdownOptionClick = (value: string) => {

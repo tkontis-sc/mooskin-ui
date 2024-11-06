@@ -24,7 +24,7 @@ export const Checkbox: React.FC<ICheckboxComponentProps> = withMooskinContext((p
 	const batchClickHandler = (e: React.MouseEvent<HTMLElement>, callback?: (e: React.MouseEvent<HTMLElement>) => void) => {
 		if (!props.disabled) {
 			onClick(e);
-			callback && callback(e);
+			callback?.(e);
 		}
 	};
 
