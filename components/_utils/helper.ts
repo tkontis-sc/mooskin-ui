@@ -15,16 +15,15 @@ export const arrayHasDupes = (array: any[]): boolean => {
 	return false;
 };
 
-export const debounce = (func: (...args: any[]) => any, wait: number, immediate: boolean) => {
+export const debounce = (func: (...args: any[]) => any, wait: number, immediate: boolean, context?: any) => {
 	let timeout: any;
 
-	return function () {
-		const args = arguments;
+	return function (...args: any[]) {
 		const later = () => {
 			timeout = null;
 
 			if (!immediate) {
-				func.apply(this, args);
+				func.apply(context, args);
 			}
 		};
 
@@ -34,7 +33,7 @@ export const debounce = (func: (...args: any[]) => any, wait: number, immediate:
 		timeout = setTimeout(later, wait);
 
 		if (callNow) {
-			func.apply(this, args);
+			func.apply(context, args);
 		}
 	};
 };

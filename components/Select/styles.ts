@@ -84,12 +84,11 @@ export const StyledSearchPlaceholderMobileView = styled(Box)<IBoxComponentProps>
 	font-style: normal;
 	letter-spacing: normal;
 	text-align: left;
-	color: inherit;
 	flex: 1;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
-	cursor:text
+	cursor:text;
 	background-color: rgba(0, 0, 0, 0.48);
 	color: ${(props) => props.palette?.fontColors.text || variables.fontColors.text};
 `;

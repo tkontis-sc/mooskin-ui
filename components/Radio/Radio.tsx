@@ -21,7 +21,7 @@ export const Radio: React.FC<IRadioComponentProps> = withMooskinContext((props) 
 		props.onClickRadio && props.onClickRadio(e, { dataLabel: props.dataLabel, value: props.value });
 	};
 
-	const batchClickHandler = (e: React.MouseEvent<HTMLElement>, callback?: (e: React.MouseEvent<HTMLElement>) => void) => {
+	const batchClickHandler = <E extends HTMLElement>(e: React.MouseEvent<E>, callback?: (e: React.MouseEvent<E>) => void) => {
 		if (!props.disabled) {
 			onClick(e);
 			callback?.(e);
@@ -39,7 +39,7 @@ export const Radio: React.FC<IRadioComponentProps> = withMooskinContext((props) 
 					children: recurseChildren(child.props.children),
 					disabled: props.disabled,
 					key: i,
-					onClick: (e: React.MouseEvent<HTMLElement>) => batchClickHandler(e, child.props.onClick)
+					onClick: (e: React.MouseEvent<HTMLLabelElement>) => batchClickHandler(e, child.props.onClick)
 				} as ILabelComponentProps);
 			}
 

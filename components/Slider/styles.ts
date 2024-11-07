@@ -26,7 +26,6 @@ export const StyledSlider = styled(Box)<ISliderComponentProps>`
 		border: solid 1px #9d9d9d;
 		width: 33px;
 		height: 33px;
-		border-radius: 3px;
 		background-color: #ffffff;
 		border-radius: 50%;
 		-webkit-appearance: none;
@@ -43,7 +42,6 @@ export const StyledSlider = styled(Box)<ISliderComponentProps>`
 		border: solid 1px #9d9d9d;
 		width: 33px;
 		height: 33px;
-		border-radius: 3px;
 		background-color: #ffffff;
 		border-radius: 50%;
 	}
@@ -58,7 +56,6 @@ export const StyledSlider = styled(Box)<ISliderComponentProps>`
 		border: solid 1px #9d9d9d;
 		width: 33px;
 		height: 33px;
-		border-radius: 3px;
 		background-color: #ffffff;
 		border-radius: 50%;
 	}
