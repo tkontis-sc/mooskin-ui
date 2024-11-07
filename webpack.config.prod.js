@@ -67,9 +67,7 @@ const prodWebPackConfig = merge(commonWebpackConfig, {
 						loader: 'css-loader',
 						options: {
 							importLoaders: 1,
-							modules: {
-								localIdentName: '[local]___[hash:base64:5]'
-							}
+							modules: true
 						}
 					},
 					'postcss-loader'

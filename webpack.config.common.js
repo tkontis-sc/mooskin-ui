@@ -41,10 +41,12 @@ const commonWebpackConfig = {
 			},
 			{
 				test: /\.(png|jpg|gif)$/,
-				type: 'asset/resource',
+				type: 'asset',
 				generator: {
 					filename: '[path][name][ext]',
-					mimetype: 'image/png'
+					dataUrl: {
+						mimetype: 'image/png'
+					}
 				}
 			}
 		]

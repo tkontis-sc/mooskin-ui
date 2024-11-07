@@ -3,7 +3,7 @@
         "outDir": "lib",
         "noImplicitAny": true,
         "strictNullChecks": true,
-        "module": "es6",
+        "module": "esnext",
         "target": "es6",
         "jsx": "react",
         "sourceMap": true,
@@ -16,7 +16,10 @@
         "pretty": true,
         "noUnusedLocals": true,
         "allowSyntheticDefaultImports": true,
-        "lib": ["dom", "es6", "es7", "dom.iterable", "scripthost"]
+        "lib": ["dom", "es6", "es7", "dom.iterable", "scripthost"],
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true
     },
     "include": ["components"],
     "exclude": ["node_modules", "lib", "components/**/*.spec.ts", "components/**/*.spec.tsx", "stories"]
