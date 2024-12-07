@@ -59,7 +59,7 @@ export const Drawer: React.FC<IDrawerComponentProps> = withMooskinContext((props
 	let drawerRef: React.MutableRefObject<undefined | HTMLElement> = React.useRef();
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-		if (e.keyCode === 27) {
+		if (e.key === 'Escape') {
 			props.onClose && props.onClose();
 		}
 	};

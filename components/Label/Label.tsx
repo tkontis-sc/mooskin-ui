@@ -20,7 +20,7 @@ export const Label: React.FC<ILabelComponentProps> = withMooskinContext((props) 
 	const children =
 		props.limit && typeof props.children === 'string'
 			? props.children && props.children.length > props.limit
-				? props.children.substr(0, props.limit) + '...'
+				? props.children.slice(0, props.limit) + '...'
 				: props.children
 			: props.children;
 

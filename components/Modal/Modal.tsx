@@ -43,7 +43,7 @@ export const Modal: React.FC<IModalComponentProps> = withMooskinContext((props) 
 
 	// on press esc button close Drawer
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-		if (e.keyCode === 27) {
+		if (e.key === 'Escape') {
 			props.onClose && props.onClose();
 		}
 	};
