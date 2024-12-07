@@ -7,6 +7,7 @@ const commonWebpackConfig = require('./webpack.config.common');
 const distFolder = 'playground-dist';
 
 const devWebpackConfig = merge(commonWebpackConfig, {
+	mode: 'development',
 	devServer: {
 		static: {
 			directory: path.join(__dirname, distFolder)

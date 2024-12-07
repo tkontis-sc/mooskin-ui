@@ -28,6 +28,7 @@ const commonWebpackConfig = require('./webpack.config.common');
 // var entries['index'] = './index/index.ts';
 
 const prodWebPackConfig = merge(commonWebpackConfig, {
+	mode: 'production',
 	entry: './components/index/index.ts',
 	output: {
 		path: path.resolve(__dirname, distFolder),
