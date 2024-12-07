@@ -48,9 +48,7 @@ const checkShouldRender = (noRender: Array<ScreenType>) => {
 		return limits.max >= width && limits.min <= width;
 	});
 
-	if (found) return false;
-
-	return true;
+	return !found;
 };
 
 Box.defaultProps = {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, InputContainer, InputEmoji, InputIcon, InputOption, InputOptionList, InputOptionListTitle, InputOverlay } from './Input';
+import { Input, InputContainer, InputEmoji, InputIcon, InputOption, InputOptionList, InputOptionListTitle } from './Input';
 
 import { mount } from 'enzyme';
 

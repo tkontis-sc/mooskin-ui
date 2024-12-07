@@ -200,7 +200,7 @@ export const Select: React.FC<ISelectComponentProps> = withMooskinContext((props
 										borderRadius={['0px', '0px', '8px', '8px']}
 										bgColor={['transparent', 'transparent', '#fff', '#fff']}
 										onClick={(e: React.MouseEvent<HTMLInputElement>) => e.stopPropagation()}
-										onChange={(e: React.ChangeEvent<HTMLInputElement>) => (setFilterValue(e.target.value), console.log(filterValue))}
+										onChange={(e: React.ChangeEvent<HTMLInputElement>) => (setFilterValue(e.target.value))}
 									>
 										<SelectFilter
 											onClick={(e: React.MouseEvent<HTMLInputElement>) => e.stopPropagation()}
