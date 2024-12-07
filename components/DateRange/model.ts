@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { DateRangePickerProps } from 'react-date-range';
 import { IBoxComponentProps } from '../Box/model';
 import { IInputComponentProps } from '../Input/model';
@@ -6,7 +7,7 @@ export interface IDateRangePickerComponentProps extends DateRangePickerProps {
 	inputProps?: IInputComponentProps;
 	pickerWrapperProps?: IBoxComponentProps;
 	wrapperProps?: IBoxComponentProps;
-	inputContainerPrpps?: IBoxComponentProps;
+	inputContainerProps?: IBoxComponentProps;
 	customComponent?: JSX.Element;
 	format?: string;
 }

@@ -49,7 +49,7 @@ export const DateRange: React.FC<IDateRangePickerComponentProps> = withMooskinCo
 
 	return (
 		<Box position="relative" d="flex" {...props.wrapperProps}>
-			<InputContainer value={getInputValue()} {...props.inputContainerPrpps}>
+			<InputContainer value={getInputValue()} {...props.inputContainerProps}>
 				{props.customComponent}
 				<Input onFocus={() => setShowPicker(true)} {...props.inputProps} />
 			</InputContainer>
