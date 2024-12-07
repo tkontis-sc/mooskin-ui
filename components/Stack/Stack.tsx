@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 // Mooskin Context HoC that passes context to component props
 import { withMooskinContext } from '../Styled/MooskinContextProvider';

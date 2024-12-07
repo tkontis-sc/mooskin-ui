@@ -1,3 +1,4 @@
+import React from 'react';
 import { IBoxComponentProps } from '../Box/model';
 
 export type IContentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';

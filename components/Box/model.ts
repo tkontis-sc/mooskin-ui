@@ -1,3 +1,4 @@
+import React from 'react';
 import { IMooskinContext, IStyledTheme, IThemeBackgroundColors, IThemeBorderColors, IThemeFontColors } from '../Styled/model';
 // import { IMooskinContext } from '../Styled/model';
 

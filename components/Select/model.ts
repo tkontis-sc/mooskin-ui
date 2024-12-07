@@ -1,3 +1,4 @@
+import React from 'react';
 import { IInputCallbackData } from '../_utils/types/commonTypes';
 import { IBoxComponentProps, IInputBoxComponentProps } from '../Box/model';
 

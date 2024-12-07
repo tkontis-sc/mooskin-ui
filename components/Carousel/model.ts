@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface ICarouselComponentProps {
 	/** Enable tabbing and arrow key navigation */
 	accessibility?: boolean;
