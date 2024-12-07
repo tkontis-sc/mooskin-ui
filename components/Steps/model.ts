@@ -22,6 +22,6 @@ export interface IStepHeaderComponentProps extends IStepCommonComponentProps {
 }
 
 export interface IStepComponentProps extends IStepCommonComponentProps {
-	/** identifier for togglin the Stepbed item */
+	/** identifier for toggling the Stepbed item */
 	activeId?: string | number;
 }

@@ -4,7 +4,7 @@ export interface ILoadingBarComponentProps extends IBoxComponentProps {
 	/** progress of the loadingBar */
 	progress: number;
 
-	/** wether an error occured */
+	/** whether an error occurred */
 	error?: boolean;
 
 	/** callback function to be fired when progress is done */

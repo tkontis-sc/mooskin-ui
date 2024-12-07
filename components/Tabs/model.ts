@@ -17,6 +17,6 @@ export interface ITabCommonComponentProps extends IBoxComponentProps {
 }
 
 export interface ITabComponentProps extends ITabCommonComponentProps {
-	/** identifier for togglin the tabbed item */
+	/** identifier for toggling the tabbed item */
 	activeId?: string | number;
 }

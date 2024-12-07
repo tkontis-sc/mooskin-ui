@@ -4,7 +4,7 @@ export interface INumberLabelComponentProps extends ILabelComponentProps {
 	/** abbreviate numerical value */
 	abbreviate?: boolean;
 
-	/** abbreviation accurancy */
+	/** abbreviation accuracy */
 	abbrAccuracy?: number;
 
 	/** round numerical value */

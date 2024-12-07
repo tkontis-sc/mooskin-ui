@@ -11,7 +11,7 @@ export interface IRadioComponentProps extends IBoxComponentProps {
 	/** provide to make the radio disabled */
 	disabled?: boolean;
 
-	/** wether the radio is selected or not */
+	/** whether the radio is selected or not */
 	selected?: boolean;
 
 	/** value to be returned in the callback */

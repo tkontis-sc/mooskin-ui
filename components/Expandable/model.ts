@@ -17,6 +17,6 @@ export interface IExpandableCommonComponentProps extends IBoxComponentProps {
 }
 
 export interface IExpandableItemComponentProps extends IBoxComponentProps, IExpandableCommonComponentProps {
-	/** identifier for togglin the expanded item */
+	/** identifier for toggling the expanded item */
 	activeId?: string | number;
 }
