@@ -125,11 +125,6 @@ export const ActionsDropdown: React.FC<IActionsDropdownComponentProps> = withMoo
 	);
 });
 
-ActionsDropdown.defaultProps = {
-	className: '',
-	style: {}
-};
-
 ActionsDropdown.displayName = 'ActionsDropdown';
 
 /**
@@ -147,11 +142,6 @@ export const ActionsDropdownItem: React.FC<IActionsDropdownItemComponentProps> =
 	);
 });
 
-ActionsDropdownItem.defaultProps = {
-	className: '',
-	style: {}
-};
-
 ActionsDropdownItem.displayName = 'ActionsDropdownItem';
 
 /**
@@ -160,10 +150,5 @@ ActionsDropdownItem.displayName = 'ActionsDropdownItem';
 export const ActionsDropdownArrow: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledActionsDropdownArrow d={['block', 'block', 'none', 'none']} {...props} />;
 });
-
-ActionsDropdownArrow.defaultProps = {
-	className: '',
-	style: {}
-};
 
 ActionsDropdownArrow.displayName = 'ActionsDropdownArrow';

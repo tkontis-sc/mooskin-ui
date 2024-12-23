@@ -6,11 +6,61 @@ import { Editor } from '@tinymce/tinymce-react';
 import { Editor as TinyMCEEditor } from 'tinymce';
 import { IPersonalizationTag, ITextEditorComponentProps } from './model';
 
+const defaultPlugins = [
+	'lists advlist',
+	'anchor',
+	'autolink',
+	'autoresize',
+	'charmap',
+	'code codesample',
+	'directionality',
+	'emoticons',
+	'fullscreen',
+	'help',
+	'hr',
+	'image imagetools',
+	'insertdatetime',
+	'link',
+	'nonbreaking',
+	'paste',
+	'preview',
+	'print',
+	'quickbars',
+	'searchreplace',
+	'table',
+	'toc',
+	'visualblocks',
+	'wordcount'
+];
+
+const defaultToolbar = `
+	newdocument |
+  undo redo |
+  cut copy paste pastetext |
+  link unlink openlink anchor |
+  numlist bullist |
+  outdent indent |
+  blockquote |
+  alignleft alignright aligncenter alignjustify |
+  bold italic strikethrough underline removeformat |
+  formatselect |
+  fontselect fontsizeselect forecolor backcolor |
+  visualblocks |
+  code |`;
+
 /**
  * TextEditor
  */
-export const TextEditor: React.FC<ITextEditorComponentProps> = (props) => {
-	const getSetup = (editor: TinyMCEEditor) => {
+export const TextEditor: React.FC<ITextEditorComponentProps> = ({
+	disabled = false,
+	init = {},
+	inline = false,
+	menubar = false,
+	plugins = defaultPlugins,
+	toolbar = defaultToolbar,
+	...props
+}) => {
+	const getSetup = (editor) => {
 		props.personalizationTags &&
 			editor.ui.registry.addMenuButton(props.personalizationTags.id, {
 				fetch: (callback) => {
@@ -33,75 +83,23 @@ export const TextEditor: React.FC<ITextEditorComponentProps> = (props) => {
 
 	const getToolbar = () => {
 		if (props.personalizationTags) {
-			return `${props.toolbar} | ${props.personalizationTags.id}`;
+			return `${toolbar} | ${props.personalizationTags.id}`;
 		}
-		return props.toolbar;
+		return toolbar;
 	};
 
 	return (
 		<Editor
-			{...props}
+			disabled={disabled}
+			inline={inline}
+			menubar={menubar}
+			plugins={plugins}
 			toolbar={getToolbar()}
-			onInit={(evt, editor) => props.onInit && props.onInit(editor)}
-			init={{
-				setup: props.personalizationTags ? getSetup : undefined,
-				...props.init,
-				menubar: props.menubar,
-				selector: props.selector
-			}}
+			{...props}
+			onInit={(_evt, editor) => props.onInit?.(editor)}
+			init={{ setup: props.personalizationTags ? getSetup : undefined, ...init, menubar, selector: props.selector }}
 		/>
 	);
-};
-
-TextEditor.defaultProps = {
-	// className: '',
-	disabled: false,
-	init: {},
-	inline: false,
-	menubar: false,
-	plugins: [
-		'lists advlist',
-		'anchor',
-		'autolink',
-		'autoresize',
-		'charmap',
-		'code codesample',
-		'directionality',
-		'emoticons',
-		'fullscreen',
-		'help',
-		'hr',
-		'image imagetools',
-		'insertdatetime',
-		'link',
-		'nonbreaking',
-		'paste',
-		'preview',
-		'print',
-		'quickbars',
-		'searchreplace',
-		'table',
-		// 'template',
-		'toc',
-		'visualblocks',
-		'wordcount'
-	],
-	// style: {},
-	// toolbar: `bullist numlist | emoticons | code | image | anchor link | paste pastetext |
-	// `
-	toolbar: `newdocument |
-            undo redo |
-            cut copy paste pastetext |
-            link unlink openlink anchor |
-            numlist bullist |
-            outdent indent |
-            blockquote |
-            alignleft alignright aligncenter alignjustify |
-            bold italic strikethrough underline removeformat |
-            formatselect |
-            fontselect fontsizeselect forecolor backcolor |
-            visualblocks |
-            code |`
 };
 
 TextEditor.displayName = 'TextEditor';

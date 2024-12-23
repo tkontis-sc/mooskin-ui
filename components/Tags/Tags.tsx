@@ -86,53 +86,39 @@ export const Tags: React.FC<ITagsComponentProps> = withMooskinContext((props) =>
 	return <StyledTags {...props} children={recurseChildren(props.children)} />;
 });
 
-Tags.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Tags.displayName = 'Tags';
 
 /**
  * Tag
  */
-export const Tag: React.FC<ITagComponentProps> = withMooskinContext((props) => {
-	return <StyledTag {...props} />;
+export const Tag: React.FC<ITagComponentProps> = withMooskinContext(({ removeIcon = true, ...props }) => {
+	return <StyledTag removeIcon={true} {...props} />;
 });
-
-Tag.defaultProps = {
-	className: '',
-	removeIcon: true,
-	style: {}
-};
 
 Tag.displayName = 'Tag';
 
 /**
  * TagInput
  */
-export const TagInput: React.FC<ITagsInputComponentProps> = withMooskinContext((props) => {
+export const TagInput: React.FC<ITagsInputComponentProps> = withMooskinContext(({ delimiters = ['Enter', 13], ...props }) => {
 	const [value, setValue] = React.useState(props.value || '');
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const text = e.target.value;
 
-		const delimiters = props.delimiters;
-
-		if (value && delimiters && shouldSubmitPaste(text, props.delimiters)) {
+		if (value && delimiters && shouldSubmitPaste(text, delimiters)) {
 			let newTag: string[] = [];
 			const tags: string[] = [];
 
 			const charArray = text.split('');
 
 			for (let i = 0; i < charArray.length; i++) {
-				delimiters &&
-					delimiters.map((delimiter) => {
-						if (charArray[i] === delimiter && newTag.join('') !== '') {
-							tags.push(newTag.join('').trim());
-							newTag = [];
-						}
-					});
+				delimiters?.map((delimiter) => {
+					if (charArray[i] === delimiter && newTag.join('') !== '') {
+						tags.push(newTag.join('').trim());
+						newTag = [];
+					}
+				});
 				if (!delimiters.includes(charArray[i]) && !delimiters.includes(charArray[i].charCodeAt(0))) {
 					newTag.push(charArray[i]);
 				}
@@ -151,12 +137,12 @@ export const TagInput: React.FC<ITagsInputComponentProps> = withMooskinContext((
 	};
 
 	const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		const delimiters = props.delimiters && getConvertedDelimiters(props.delimiters);
+		const convertedDelimiters = delimiters && getConvertedDelimiters(delimiters);
 
 		const key = e.key;
 		const keyCode = e.keyCode;
 
-		if (value && delimiters && (delimiters.includes(key) || delimiters.includes(keyCode))) {
+		if (value && convertedDelimiters && (convertedDelimiters.includes(key) || convertedDelimiters.includes(keyCode))) {
 			e.preventDefault();
 			props.onAddTag && props.onAddTag(value.toString());
 			setValue('');
@@ -173,16 +159,11 @@ export const TagInput: React.FC<ITagsInputComponentProps> = withMooskinContext((
 			// onPaste={onPaste}
 			onKeyDown={onKeyDown}
 			autoFocus
+			delimiters={delimiters}
 			{...props}
 		/>
 	);
 });
-
-TagInput.defaultProps = {
-	className: '',
-	delimiters: ['Enter', 13],
-	style: {}
-};
 
 TagInput.displayName = 'TagInput';
 
@@ -193,11 +174,6 @@ export const TagClose: React.FC<IBoxComponentProps> = withMooskinContext((props)
 	return <StyledTagClose {...props} />;
 });
 
-TagClose.defaultProps = {
-	className: '',
-	style: {}
-};
-
 TagClose.displayName = 'TagClose';
 
 /**
@@ -206,11 +182,6 @@ TagClose.displayName = 'TagClose';
 export const TagText: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledTagText {...props} />;
 });
-
-TagText.defaultProps = {
-	className: '',
-	style: {}
-};
 
 TagText.displayName = 'TagText';
 

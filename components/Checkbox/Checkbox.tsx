@@ -77,11 +77,6 @@ export const Checkbox: React.FC<ICheckboxComponentProps> = withMooskinContext((p
 	);
 });
 
-Checkbox.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Checkbox.displayName = 'Checkbox';
 
 /**
@@ -90,11 +85,6 @@ Checkbox.displayName = 'Checkbox';
 export const CheckboxIcon: React.FC<ICheckboxIconComponentProps> = withMooskinContext((props) => {
 	return <StyledCheckboxIcon {...props} />;
 });
-
-CheckboxIcon.defaultProps = {
-	className: '',
-	style: {}
-};
 
 CheckboxIcon.displayName = 'CheckboxIcon';
 
@@ -105,11 +95,6 @@ export const CheckboxLabel: React.FC<ILabelComponentProps> = withMooskinContext(
 	return <StyledCheckboxLabel fontSize={[14, 14, 16, 16]} disabled={props.disabled} {...props} />;
 });
 
-CheckboxLabel.defaultProps = {
-	className: '',
-	style: {}
-};
-
 CheckboxLabel.displayName = 'CheckboxLabel';
 
 /**
@@ -118,10 +103,5 @@ CheckboxLabel.displayName = 'CheckboxLabel';
 export const CheckboxDescription: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <Description {...props} />;
 });
-
-CheckboxDescription.defaultProps = {
-	className: '',
-	style: {}
-};
 
 CheckboxDescription.displayName = 'CheckboxDescription';

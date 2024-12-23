@@ -26,7 +26,7 @@ const AlertIcons = {
 /**
  * Alert
  */
-export const Alert: React.FC<IBaseAlertComponentProps> = withMooskinContext((props) => {
+export const Alert: React.FC<IBaseAlertComponentProps> = withMooskinContext(({ status = 'info', variant = 'subtle', ...props }) => {
 	const recurseChildren = (children: any): any => {
 		if (!children) {
 			return null;
@@ -44,8 +44,8 @@ export const Alert: React.FC<IBaseAlertComponentProps> = withMooskinContext((pro
 				return React.cloneElement(child, {
 					children: recurseChildren(child.props.children),
 					key: i,
-					status: child.props.status ? child.props.status : props.status,
-					variant: child.props.variant ? child.props.variant : props.variant
+					status: child.props.status || status,
+					variant: child.props.variant || variant
 				} as IBaseAlertComponentProps);
 			}
 
@@ -57,15 +57,8 @@ export const Alert: React.FC<IBaseAlertComponentProps> = withMooskinContext((pro
 		});
 	};
 
-	return <StyledAlert {...props} boxShadow="lg" children={recurseChildren(props.children)} />;
+	return <StyledAlert {...props} status={status} variant={variant} boxShadow="lg" children={recurseChildren(props.children)} />;
 });
-
-Alert.defaultProps = {
-	className: '',
-	status: 'info',
-	style: {},
-	variant: 'subtle'
-};
 
 Alert.displayName = 'Alert';
 
@@ -76,11 +69,6 @@ export const AlertIcon: React.FC<IBaseAlertComponentProps> = withMooskinContext(
 	return <StyledAlertIcon {...props} children={props.status && AlertIcons[props.status]} />;
 });
 
-AlertIcon.defaultProps = {
-	className: '',
-	style: {}
-};
-
 AlertIcon.displayName = 'AlertIcon';
 
 /**
@@ -89,11 +77,6 @@ AlertIcon.displayName = 'AlertIcon';
 export const AlertTitle: React.FC<IBaseAlertComponentProps> = withMooskinContext((props) => {
 	return <StyledAlertTitle {...props} />;
 });
-
-AlertTitle.defaultProps = {
-	className: '',
-	style: {}
-};
 
 AlertTitle.displayName = 'AlertTitle';
 
@@ -104,11 +87,6 @@ export const AlertDescription: React.FC<IBaseAlertComponentProps> = withMooskinC
 	return <StyledAlertDescription {...props} />;
 });
 
-AlertDescription.defaultProps = {
-	className: '',
-	style: {}
-};
-
 AlertDescription.displayName = 'AlertDescription';
 
 /**
@@ -118,11 +96,6 @@ export const AlertCloseButton: React.FC<IBaseAlertComponentProps> = withMooskinC
 	return <StyledAlertCloseButton {...props} children="close" />;
 });
 
-AlertCloseButton.defaultProps = {
-	className: '',
-	style: {}
-};
-
 AlertCloseButton.displayName = 'AlertCloseButton';
 
 /**
@@ -131,10 +104,5 @@ AlertCloseButton.displayName = 'AlertCloseButton';
 export const AlertButton: React.FC<IBaseAlertComponentProps> = withMooskinContext((props) => {
 	return <StyledAlertButton {...props} />;
 });
-
-AlertButton.defaultProps = {
-	className: '',
-	style: {}
-};
 
 AlertButton.displayName = 'AlertButton';

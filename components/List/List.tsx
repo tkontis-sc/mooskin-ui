@@ -16,15 +16,9 @@ import { StyledListItem, StyledListItemBody, StyledListItemEnd, StyledListItemHe
 /**
  * List
  */
-export const List: React.FC<ILayoutComponentProps> = withMooskinContext((props) => {
-	return <Layout {...props} />;
+export const List: React.FC<ILayoutComponentProps> = withMooskinContext(({ spacing = 15, ...props }) => {
+	return <Layout spacing={spacing} {...props} />;
 });
-
-List.defaultProps = {
-	className: '',
-	spacing: 15,
-	style: {}
-};
 
 List.displayName = 'List';
 
@@ -35,11 +29,6 @@ export const ListItem: React.FC<IBoxComponentProps> = withMooskinContext((props)
 	return <StyledListItem boxShadow="xs" round="xs" {...props} />;
 });
 
-ListItem.defaultProps = {
-	className: '',
-	style: {}
-};
-
 ListItem.displayName = 'ListItem';
 
 /**
@@ -48,11 +37,6 @@ ListItem.displayName = 'ListItem';
 export const ListItemHead: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledListItemHead {...props} />;
 });
-
-ListItemHead.defaultProps = {
-	className: '',
-	style: {}
-};
 
 ListItemHead.displayName = 'ListItemHead';
 
@@ -63,11 +47,6 @@ export const ListItemBody: React.FC<IBoxComponentProps> = withMooskinContext((pr
 	return <StyledListItemBody {...props} />;
 });
 
-ListItemBody.defaultProps = {
-	className: '',
-	style: {}
-};
-
 ListItemBody.displayName = 'ListItemBody';
 
 /**
@@ -76,10 +55,5 @@ ListItemBody.displayName = 'ListItemBody';
 export const ListItemEnd: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledListItemEnd {...props} />;
 });
-
-ListItemEnd.defaultProps = {
-	className: '',
-	style: {}
-};
 
 ListItemEnd.displayName = 'ListItemEnd';

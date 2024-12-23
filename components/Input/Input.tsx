@@ -115,11 +115,6 @@ export const InputContainer: React.FC<IInputContainerComponentProps> = withMoosk
 	return <StyledInputContainer {...props}>{recurseChildren(props.children)}</StyledInputContainer>;
 });
 
-InputContainer.defaultProps = {
-	className: '',
-	style: {}
-};
-
 InputContainer.displayName = 'InputContainer';
 
 /**
@@ -156,11 +151,6 @@ export const InputOptionList: React.FC<IInputListComponentProps> = withMooskinCo
 	);
 });
 
-InputOptionList.defaultProps = {
-	className: '',
-	style: {}
-};
-
 InputOptionList.displayName = 'InputOptionList';
 
 /**
@@ -169,11 +159,6 @@ InputOptionList.displayName = 'InputOptionList';
 export const InputOptionListTitle: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledInputOptionListTitle noRender={['sm', 'xs']} {...props} />;
 });
-
-InputOptionListTitle.defaultProps = {
-	className: '',
-	style: {}
-};
 
 InputOptionListTitle.displayName = 'InputOptionListTitle';
 
@@ -194,11 +179,6 @@ export const InputOption: React.FC<IInputOptionComponentProps> = withMooskinCont
 	);
 });
 
-InputOption.defaultProps = {
-	className: '',
-	style: {}
-};
-
 InputOption.displayName = 'InputOption';
 
 /**
@@ -209,11 +189,6 @@ export const Input: React.FC<IInputComponentProps> = withMooskinContext((props) 
 	return <InputComponent {...props} boxAs="input" />;
 });
 
-Input.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Input.displayName = 'Input';
 
 /**
@@ -222,11 +197,6 @@ Input.displayName = 'Input';
 export const InputIcon: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledInputIcon ml={5} {...props} />;
 });
-
-InputIcon.defaultProps = {
-	className: '',
-	style: {}
-};
 
 InputIcon.displayName = 'InputIcon';
 
@@ -242,11 +212,6 @@ export const InputOverlay: React.FC<IBoxComponentProps> = withMooskinContext((pr
 		/>
 	);
 });
-
-InputOverlay.defaultProps = {
-	className: '',
-	style: {}
-};
 
 InputOverlay.displayName = 'InputOverlay';
 
@@ -272,10 +237,5 @@ export const InputEmoji: React.FC<IInputEmojiComponentProps> = withMooskinContex
 		</Box>
 	);
 });
-
-InputEmoji.defaultProps = {
-	className: '',
-	style: {}
-};
 
 InputEmoji.displayName = 'InputEmoji';

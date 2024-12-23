@@ -9,13 +9,13 @@ import { ILoadingBarComponentProps } from './model';
 // Styled Components
 import { StyledLoadingBar } from './styles';
 
-export const LoadingBar: React.FC<ILoadingBarComponentProps> = withMooskinContext((props) => {
-	const [progress, setProgress] = React.useState(props.progress);
+export const LoadingBar: React.FC<ILoadingBarComponentProps> = withMooskinContext(({ progress: parentProgress = 0, ...props }) => {
+	const [progress, setProgress] = React.useState(parentProgress);
 	const [opacity, setOpacity] = React.useState(1);
 
 	React.useEffect(() => {
-		setProgress(props.progress);
-	}, [props.progress]);
+		setProgress(parentProgress);
+	}, [parentProgress]);
 
 	React.useEffect(() => {
 		if (props.error) {
@@ -41,11 +41,5 @@ export const LoadingBar: React.FC<ILoadingBarComponentProps> = withMooskinContex
 
 	return <StyledLoadingBar {...props} progress={progress} opacity={opacity} />;
 });
-
-LoadingBar.defaultProps = {
-	className: '',
-	progress: 0,
-	style: {}
-};
 
 LoadingBar.displayName = 'LoadingBar';

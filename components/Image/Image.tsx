@@ -16,9 +16,4 @@ export const Image: React.FC<IBoxImageComponentProps> = withMooskinContext((prop
 	return <StyledImage {...props} boxAs="img" />;
 });
 
-Image.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Image.displayName = 'Image';

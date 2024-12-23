@@ -12,7 +12,7 @@ import { Label } from '../Label/Label';
 /**
  * NumberLabel
  */
-export const NumberLabel: React.FC<INumberLabelComponentProps> = withMooskinContext((props) => {
+export const NumberLabel: React.FC<INumberLabelComponentProps> = withMooskinContext(({ abbrAccuracy: accuracy = 1, ...props }) => {
 	const getContent = () => {
 		const { children, abbreviate, roundNumber } = props;
 		if ((abbreviate || roundNumber) && !isNaN(children as any)) {
@@ -151,7 +151,6 @@ export const NumberLabel: React.FC<INumberLabelComponentProps> = withMooskinCont
 	};
 
 	const getDecimalValue = (value: string, abbr: string) => {
-		const accuracy = props.abbrAccuracy;
 		const array = value.split('');
 		if (abbr === 'thousand') {
 			return accuracy ? array.splice(array.length - 3, accuracy).join('') : 0;
@@ -166,7 +165,6 @@ export const NumberLabel: React.FC<INumberLabelComponentProps> = withMooskinCont
 
 	const removeZeros = (value: string) => {
 		const zero = '0';
-		const accuracy = props.abbrAccuracy;
 		if (accuracy === 0) {
 			return value.replace('.0', '');
 		}
@@ -178,11 +176,5 @@ export const NumberLabel: React.FC<INumberLabelComponentProps> = withMooskinCont
 
 	return <Label {...props}>{getContent()}</Label>;
 });
-
-NumberLabel.defaultProps = {
-	abbrAccuracy: 1,
-	className: '',
-	style: {}
-};
 
 NumberLabel.displayName = 'NumberLabel';

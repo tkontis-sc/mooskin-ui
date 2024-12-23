@@ -52,8 +52,8 @@ export const Pagination: React.FC<IPaginationComponentProps> = withMooskinContex
 					childrenLength && props.activePage >= childrenLength - 1
 						? page >= childrenLength - 4
 						: props.activePage >= 4
-						? page - 2 <= props.activePage && page + 2 >= props.activePage
-						: page <= 5;
+							? page - 2 <= props.activePage && page + 2 >= props.activePage
+							: page <= 5;
 
 				if (children[props.activePage - 2] && !showPrevious) {
 					setShowPrevious(true);
@@ -86,7 +86,7 @@ export const Pagination: React.FC<IPaginationComponentProps> = withMooskinContex
 								children: page,
 								key: i
 								// onClick: (e) => batchClickHandler(e, page, child.props.onClick),
-						  } as IPaginationButtonComponentProps)
+							} as IPaginationButtonComponentProps)
 						: null;
 				}
 
@@ -163,11 +163,6 @@ export const Pagination: React.FC<IPaginationComponentProps> = withMooskinContex
 	);
 });
 
-Pagination.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Pagination.displayName = 'Pagination';
 
 /**
@@ -176,10 +171,5 @@ Pagination.displayName = 'Pagination';
 export const PaginationButton: React.FC<IPaginationButtonComponentProps> = withMooskinContext((props) => {
 	return <StyledPaginationButton {...props} />;
 });
-
-PaginationButton.defaultProps = {
-	className: '',
-	style: {}
-};
 
 PaginationButton.displayName = 'PaginationButton';

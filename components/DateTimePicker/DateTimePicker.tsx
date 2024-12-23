@@ -4,7 +4,7 @@ import * as React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 
 // Models
-import { IDateTimePickerComponentProps, IDateTimePickerKeyboardComponentProps, PickerType } from './model';
+import { IDateTimePickerComponentProps, IDateTimePickerKeyboardComponentProps } from './model';
 
 // Material-UI Date Time Picker
 import { DateTimePicker as DateTimePickerUI, KeyboardDateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -26,30 +26,21 @@ const ComponentByType = {
  * DateTimePicker
  */
 export const DateTimePicker: React.FC<IDateTimePickerComponentProps | IDateTimePickerKeyboardComponentProps> = withMooskinContext(
-	(props) => {
+	({ ampm = false, format = 'dd/MM/yyyy HH:ss', pickerType = 'date-time', ...props }) => {
 		const materialTheme = createTheme(getOverridesForPicker((props as any).palette, variables));
 
 		const renderInput = (dateInputProps: any) => <Input style={{ width: '100%' }} {...dateInputProps} {...props.inputComponentProps} />;
 
-		const type: PickerType = props.pickerType ? props.pickerType : 'date-time';
-
-		const PickerComponent = ComponentByType[type];
+		const PickerComponent = ComponentByType[pickerType];
 
 		return (
 			<MuiPickersUtilsProvider utils={DateFnsUtils}>
 				<ThemeProvider theme={materialTheme}>
-					<PickerComponent {...props} TextFieldComponent={renderInput} />
+					<PickerComponent {...props} ampm={ampm} format={format} TextFieldComponent={renderInput} />
 				</ThemeProvider>
 			</MuiPickersUtilsProvider>
 		);
 	}
 );
-
-DateTimePicker.defaultProps = {
-	ampm: false,
-	format: 'dd/MM/yyyy HH:ss',
-	pickerType: 'date-time'
-	// variant: 'inline',
-};
 
 DateTimePicker.displayName = 'DateTimePicker';

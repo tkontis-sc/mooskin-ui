@@ -12,15 +12,8 @@ import { StyledLoader } from './styles';
 /**
  * Loader
  */
-export const Loader: React.FC<ILoaderComponentProps> = withMooskinContext((props) => {
-	return <StyledLoader {...props} />;
+export const Loader: React.FC<ILoaderComponentProps> = withMooskinContext(({ size = 50, spinnerWidth = 5, ...props }) => {
+	return <StyledLoader size={size} spinnerWidth={spinnerWidth} {...props} />;
 });
-
-Loader.defaultProps = {
-	className: '',
-	size: 50,
-	spinnerWidth: 5,
-	style: {}
-};
 
 Loader.displayName = 'Loader';

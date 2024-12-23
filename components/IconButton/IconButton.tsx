@@ -20,8 +20,3 @@ export const IconButton: React.FC<IIconButtonComponentProps> = withMooskinContex
 });
 
 IconButton.displayName = 'IconButton';
-
-IconButton.defaultProps = {
-	className: '',
-	style: {}
-};

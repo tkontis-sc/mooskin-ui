@@ -16,11 +16,6 @@ export const Grid: React.FC<IGridProps> = withMooskinContext((props) => {
 	return <StyledGrid {...props} />;
 });
 
-Grid.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Grid.displayName = 'Grid';
 
 /**
@@ -30,11 +25,6 @@ export const Row: React.FC<IRowProps> = withMooskinContext((props) => {
 	return <StyledRow {...props} />;
 });
 
-Row.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Row.displayName = 'Row';
 
 /**
@@ -43,10 +33,5 @@ Row.displayName = 'Row';
 export const Col: React.FC<IColProps> = withMooskinContext((props) => {
 	return <StyledCol {...props} />;
 });
-
-Col.defaultProps = {
-	className: '',
-	style: {}
-};
 
 Col.displayName = 'Col';

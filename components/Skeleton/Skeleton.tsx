@@ -12,79 +12,66 @@ import { StyledSkeleton, StyledSkeletonCircle, StyledSkeletonText } from './styl
 /**
  * Skeleton
  */
-export const Skeleton: React.FC<ICommonSkeletonComponentProps> = withMooskinContext((props) => {
-	if (props.isLoaded) {
-		return <>{props.children}</>;
+export const Skeleton: React.FC<ICommonSkeletonComponentProps> = withMooskinContext(
+	({ endColor = '#A0AEC0', isLoaded = false, speed = 0.8, startColor = '#EDF2F7', ...props }) => {
+		if (isLoaded) {
+			return <>{props.children}</>;
+		}
+		return <StyledSkeleton endColor={endColor} isLoaded={isLoaded} speed={speed} startColor={startColor} {...props} />;
 	}
-	return <StyledSkeleton {...props} />;
-});
-
-Skeleton.defaultProps = {
-	className: '',
-	endColor: '#A0AEC0',
-	// fadeDuration: 0.4,
-	isLoaded: false,
-	speed: 0.8,
-	startColor: '#EDF2F7',
-	style: {}
-};
+);
 
 Skeleton.displayName = 'Skeleton';
 
 /**
  * SkeletonCircle
  */
-export const SkeletonCircle: React.FC<ISkeletonCircleComponentProps> = withMooskinContext((props) => {
-	if (props.isLoaded) {
-		return <>{props.children}</>;
+export const SkeletonCircle: React.FC<ISkeletonCircleComponentProps> = withMooskinContext(
+	({ endColor = '#A0AEC0', isLoaded = false, size = '20px', speed = 0.8, startColor = '#EDF2F7', ...props }) => {
+		if (isLoaded) {
+			return <>{props.children}</>;
+		}
+		return <StyledSkeletonCircle endColor={endColor} isLoaded={isLoaded} size={size} speed={speed} startColor={startColor} {...props} />;
 	}
-	return <StyledSkeletonCircle {...props} />;
-});
-
-SkeletonCircle.defaultProps = {
-	className: '',
-	endColor: '#A0AEC0',
-	// fadeDuration: 0.4,
-	isLoaded: false,
-	size: '20px',
-	speed: 0.8,
-	startColor: '#EDF2F7',
-	style: {}
-};
+);
 
 SkeletonCircle.displayName = 'Skeleton';
 
 /**
  * SkeletonText
  */
-export const SkeletonText: React.FC<ISkeletonTextComponentProps> = withMooskinContext((props) => {
-	if (props.isLoaded) {
-		return <>{props.children}</>;
+export const SkeletonText: React.FC<ISkeletonTextComponentProps> = withMooskinContext(
+	({ endColor = '#A0AEC0', isLoaded = false, lines = 4, speed = 0.8, startColor = '#EDF2F7', ...props }) => {
+		if (isLoaded) {
+			return <>{props.children}</>;
+		}
+
+		const linesIteratorHelper = Array(lines)
+			.fill(undefined)
+			.map((_, i, a) => ({ key: i, widthPercentage: a.length - 1 ? '80%' : '100%' }));
+
+		if (lines > 0) {
+			return (
+				<>
+					{linesIteratorHelper.map(({ key, widthPercentage }) => {
+						return (
+							<StyledSkeletonText
+								{...props}
+								startColor={startColor}
+								endColor={endColor}
+								lines={lines}
+								speed={speed}
+								isLoaded={isLoaded}
+								key={key}
+								w={widthPercentage}
+							/>
+						);
+					})}
+				</>
+			);
+		}
+		return null;
 	}
-
-	const lines = [...Array(props.lines)];
-
-	if (lines.length) {
-		return (
-			<>
-				{lines.map((line, i) => {
-					return <StyledSkeletonText {...props} key={i} w={i === lines.length - 1 ? '80%' : '100%'} />;
-				})}
-			</>
-		);
-	}
-	return null;
-});
-
-SkeletonText.defaultProps = {
-	className: '',
-	endColor: '#A0AEC0',
-	// fadeDuration: 0.4,
-	isLoaded: false,
-	lines: 4,
-	speed: 0.8,
-	startColor: '#EDF2F7',
-	style: {}
-};
+);
 
 SkeletonText.displayName = 'Skeleton';

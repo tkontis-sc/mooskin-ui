@@ -16,11 +16,6 @@ export const Table: React.FC<IBoxComponentProps> = withMooskinContext((props) =>
 	return <StyledTable {...props} />;
 });
 
-Table.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Table.displayName = 'Table';
 
 /**
@@ -29,11 +24,6 @@ Table.displayName = 'Table';
 export const TableHeader: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledTableHeader {...props} />;
 });
-
-TableHeader.defaultProps = {
-	className: '',
-	style: {}
-};
 
 TableHeader.displayName = 'TableHeader';
 
@@ -44,11 +34,6 @@ export const TableHeaderItem: React.FC<IBoxComponentProps> = withMooskinContext(
 	return <StyledTableHeaderItem {...props} />;
 });
 
-TableHeaderItem.defaultProps = {
-	className: '',
-	style: {}
-};
-
 TableHeaderItem.displayName = 'TableHeaderItem';
 
 /**
@@ -58,11 +43,6 @@ export const TableRow: React.FC<IBoxComponentProps> = withMooskinContext((props)
 	return <StyledTableRow {...props} />;
 });
 
-TableRow.defaultProps = {
-	className: '',
-	style: {}
-};
-
 TableRow.displayName = 'TableRow';
 
 /**
@@ -71,10 +51,5 @@ TableRow.displayName = 'TableRow';
 export const TableRowItem: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledTableRowItem {...props} />;
 });
-
-TableRowItem.defaultProps = {
-	className: '',
-	style: {}
-};
 
 TableRowItem.displayName = 'TableRowItem';

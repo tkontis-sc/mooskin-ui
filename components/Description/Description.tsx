@@ -16,9 +16,4 @@ export const Description: React.FC<IBoxComponentProps> = withMooskinContext((pro
 	return <StyledDescription fontSize={[12, 12, 13, 13]} {...props} />;
 });
 
-Description.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Description.displayName = 'Description';

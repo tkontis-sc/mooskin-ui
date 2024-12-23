@@ -186,9 +186,4 @@ export const DateSelect: React.FC<IDateSelectComponentProps> = withMooskinContex
 	return renderDateSelect();
 });
 
-DateSelect.defaultProps = {
-	className: '',
-	style: {}
-};
-
 DateSelect.displayName = 'DateSelect';

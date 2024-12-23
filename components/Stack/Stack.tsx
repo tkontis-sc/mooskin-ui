@@ -83,37 +83,21 @@ Stack.displayName = 'Stack';
 /**
  * HStack
  */
-export const HStack: React.FC<IStackComponentProps> = withMooskinContext((props) => {
-	return <Stack {...props} />;
-});
-
-HStack.defaultProps = {
-	align: 'stretch',
-	className: '',
-	direction: 'row',
-	flexWrap: 'wrap',
-	justify: 'initial',
-	spacing: 0,
-	style: {}
-};
+export const HStack: React.FC<IStackComponentProps> = withMooskinContext(
+	({ align = 'stretch', direction = 'row', flexWrap = 'wrap', justify = 'initial', spacing = 0, ...props }) => {
+		return <Stack align={align} direction={direction} flexWrap={flexWrap} justify={justify} spacing={spacing} {...props} />;
+	}
+);
 
 HStack.displayName = 'HStack';
 
 /**
  * VStack
  */
-export const VStack: React.FC<IStackComponentProps> = withMooskinContext((props) => {
-	return <Stack {...props} />;
-});
-
-VStack.defaultProps = {
-	align: 'initial',
-	className: '',
-	direction: 'column',
-	flexWrap: 'wrap',
-	justify: 'center',
-	spacing: 0,
-	style: {}
-};
+export const VStack: React.FC<IStackComponentProps> = withMooskinContext(
+	({ align = 'initial', direction = 'column', flexWrap = 'wrap', justify = 'center', spacing = 0, ...props }) => {
+		return <Stack align={align} direction={direction} flexWrap={flexWrap} justify={justify} spacing={spacing} {...props} />;
+	}
+);
 
 VStack.displayName = 'VStack';

@@ -4,7 +4,7 @@ import * as React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 
 // Models
-import { IDatePickerComponentProps, IDatePickerKeyboardComponentProps, PickerType } from './model';
+import { IDatePickerComponentProps, IDatePickerKeyboardComponentProps } from './model';
 
 // Material-UI Date Picker
 import { DatePicker as DatePickerUI, KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -25,31 +25,25 @@ const ComponentByType = {
 /**
  * DatePicker
  */
-export const DatePicker: React.FC<IDatePickerComponentProps | IDatePickerKeyboardComponentProps> = withMooskinContext((props) => {
-	const materialTheme = createTheme(getOverridesForPicker((props as any).palette, variables));
-	const { inputProps } = props;
+export const DatePicker: React.FC<IDatePickerComponentProps | IDatePickerKeyboardComponentProps> = withMooskinContext(
+	({ format = 'dd/MM/yyyy', pickerType = 'date', ...props }) => {
+		const materialTheme = createTheme(getOverridesForPicker((props as any).palette, variables));
+		const { inputProps } = props;
 
-	const renderInput = (dateInputProps: any) => {
-		return <Input style={{ width: '100%' }} {...dateInputProps} {...inputProps} />;
-	};
+		const renderInput = (dateInputProps: any) => {
+			return <Input style={{ width: '100%' }} {...dateInputProps} {...inputProps} />;
+		};
 
-	const type: PickerType = props.pickerType ? props.pickerType : 'date';
+		const PickerComponent = ComponentByType[pickerType];
 
-	const PickerComponent = ComponentByType[type];
-
-	return (
-		<MuiPickersUtilsProvider utils={DateFnsUtils}>
-			<ThemeProvider theme={materialTheme}>
-				<PickerComponent {...props} TextFieldComponent={renderInput} />
-			</ThemeProvider>
-		</MuiPickersUtilsProvider>
-	);
-});
-
-DatePicker.defaultProps = {
-	format: 'dd/MM/yyyy',
-	pickerType: 'date'
-	// variant: 'inline',
-};
+		return (
+			<MuiPickersUtilsProvider utils={DateFnsUtils}>
+				<ThemeProvider theme={materialTheme}>
+					<PickerComponent {...props} format={format} TextFieldComponent={renderInput} />
+				</ThemeProvider>
+			</MuiPickersUtilsProvider>
+		);
+	}
+);
 
 DatePicker.displayName = 'DatePicker';

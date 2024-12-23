@@ -78,11 +78,6 @@ export const Radio: React.FC<IRadioComponentProps> = withMooskinContext((props) 
 	);
 });
 
-Radio.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Radio.displayName = 'Radio';
 
 /**
@@ -91,11 +86,6 @@ Radio.displayName = 'Radio';
 export const RadioIcon: React.FC<IRadioIconComponentProps> = withMooskinContext((props) => {
 	return <StyledRadioIcon {...props} />;
 });
-
-RadioIcon.defaultProps = {
-	className: '',
-	style: {}
-};
 
 RadioIcon.displayName = 'RadioIcon';
 
@@ -106,11 +96,6 @@ export const RadioLabel: React.FC<ILabelComponentProps> = withMooskinContext((pr
 	return <StyledRadioLabel fontSize={[14, 14, 16, 16]} disabled={props.disabled} {...props} />;
 });
 
-RadioLabel.defaultProps = {
-	className: '',
-	style: {}
-};
-
 RadioLabel.displayName = 'RadioLabel';
 
 /**
@@ -119,10 +104,5 @@ RadioLabel.displayName = 'RadioLabel';
 export const RadioDescription: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <Description {...props} />;
 });
-
-RadioDescription.defaultProps = {
-	className: '',
-	style: {}
-};
 
 RadioDescription.displayName = 'RadioDescription';

@@ -12,18 +12,12 @@ import { StyledAnchor } from './styles';
 /**
  * Anchor
  */
-export const Anchor: React.FC<IAnchorComponentProps> = withMooskinContext((props) => {
+export const Anchor: React.FC<IAnchorComponentProps> = withMooskinContext(({ target = '_blank', ...props }) => {
 	const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
 		props.disabled && e.preventDefault();
 		!props.disabled && props.onClick && props.onClick(e);
 	};
-	return <StyledAnchor {...props} onClick={onClick} boxAs="a" />;
+	return <StyledAnchor {...props} target={target} onClick={onClick} boxAs="a" />;
 });
-
-Anchor.defaultProps = {
-	className: '',
-	style: {},
-	target: '_blank'
-};
 
 Anchor.displayName = 'Anchor';

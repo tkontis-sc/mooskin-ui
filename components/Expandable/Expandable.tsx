@@ -100,11 +100,6 @@ export const Expandable: React.FC<IExpandableComponentProps> = withMooskinContex
 	return <StyledExpandable {...props} children={recurseChildren(props.children)} />;
 });
 
-Expandable.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Expandable.displayName = 'Expandable';
 
 /**
@@ -113,11 +108,6 @@ Expandable.displayName = 'Expandable';
 export const ExpandableItem: React.FC<IExpandableItemComponentProps> = withMooskinContext((props) => {
 	return <StyledExpandableItem {...props} />;
 });
-
-ExpandableItem.defaultProps = {
-	className: '',
-	style: {}
-};
 
 ExpandableItem.displayName = 'ExpandableItem';
 
@@ -128,11 +118,6 @@ export const ExpandableItemContainer: React.FC<IExpandableItemComponentProps> = 
 	return <StyledExpandableItemContainer {...props} />;
 });
 
-ExpandableItemContainer.defaultProps = {
-	className: '',
-	style: {}
-};
-
 ExpandableItemContainer.displayName = 'ExpandableItemContainer';
 
 /**
@@ -142,11 +127,6 @@ export const ExpandableItemText: React.FC<IBoxComponentProps> = withMooskinConte
 	return <StyledExpandableItemText fontSize={[14, 14, 16, 16]} {...props} />;
 });
 
-ExpandableItemText.defaultProps = {
-	className: '',
-	style: {}
-};
-
 ExpandableItemText.displayName = 'ExpandableItemText';
 
 /**
@@ -155,11 +135,6 @@ ExpandableItemText.displayName = 'ExpandableItemText';
 export const ExpandableItemButton: React.FC<IExpandableCommonComponentProps> = withMooskinContext((props) => {
 	return <StyledExpandableItemButton {...props} className={`notranslate ${props.className}`} />;
 });
-
-ExpandableItemButton.defaultProps = {
-	className: '',
-	style: {}
-};
 
 ExpandableItemButton.displayName = 'ExpandableItemButton';
 
@@ -181,10 +156,5 @@ export const ExpandableItemContent: React.FC<IExpandableCommonComponentProps> = 
 		</Transition>
 	);
 });
-
-ExpandableItemContent.defaultProps = {
-	className: '',
-	style: {}
-};
 
 ExpandableItemContent.displayName = 'ExpandableItemContent';

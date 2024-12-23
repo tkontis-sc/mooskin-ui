@@ -44,19 +44,9 @@ export const Sidemenu: React.FC<ISidemenuComponentProps> = withMooskinContext((p
 	return <StyledSidemenu {...props} children={recurseChildren(props.children)} />;
 });
 
-Sidemenu.defaultProps = {
-	className: '',
-	style: {}
-};
-
 /**
  * SidemenuItem
  */
 export const SidemenuItem: React.FC<ISidemenuItemComponentProps> = withMooskinContext((props) => {
 	return <StyledSidemenuItem {...props} />;
 });
-
-SidemenuItem.defaultProps = {
-	className: '',
-	style: {}
-};

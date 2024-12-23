@@ -22,9 +22,4 @@ export const Text: React.FC<ITextComponentProps> = withMooskinContext((props) =>
 	return <StyledText {...props} children={children} />;
 });
 
-Text.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Text.displayName = 'Text';

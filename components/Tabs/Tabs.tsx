@@ -81,11 +81,6 @@ export const Tabs: React.FC<ITabsComponentProps> = withMooskinContext((props) =>
 	return <StyledTabs {...props} children={recurseChildren(props.children)} />;
 });
 
-Tabs.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Tabs.displayName = 'Tabs';
 
 /**
@@ -94,11 +89,6 @@ Tabs.displayName = 'Tabs';
 export const Tab: React.FC<ITabComponentProps> = withMooskinContext((props) => {
 	return <StyledTab {...props} />;
 });
-
-Tab.defaultProps = {
-	className: '',
-	style: {}
-};
 
 Tab.displayName = 'Tab';
 
@@ -109,11 +99,6 @@ export const TabHeader: React.FC<ITabCommonComponentProps> = withMooskinContext(
 	return <StyledTabHeader fontSize={[12, 12, 14, 14]} {...props} />;
 });
 
-TabHeader.defaultProps = {
-	className: '',
-	style: {}
-};
-
 TabHeader.displayName = 'TabHeader';
 
 /**
@@ -122,10 +107,5 @@ TabHeader.displayName = 'TabHeader';
 export const TabContent: React.FC<ITabCommonComponentProps> = withMooskinContext((props) => {
 	return <StyledTabContent {...props} />;
 });
-
-TabContent.defaultProps = {
-	className: '',
-	style: {}
-};
 
 TabContent.displayName = 'TabContent';

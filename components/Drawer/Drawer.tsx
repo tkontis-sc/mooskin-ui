@@ -55,87 +55,84 @@ const ContentByPosition = {
 	}
 };
 
-export const Drawer: React.FC<IDrawerComponentProps> = withMooskinContext((props) => {
-	let drawerRef: React.MutableRefObject<undefined | HTMLElement> = React.useRef();
+export const Drawer: React.FC<IDrawerComponentProps> = withMooskinContext(
+	({ closeOnOverlayClick = true, placement = 'right', size = 'sm', ...props }) => {
+		let drawerRef: React.MutableRefObject<undefined | HTMLElement> = React.useRef();
 
-	const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-		if (e.key === 'Escape') {
-			props.onClose && props.onClose();
-		}
-	};
-
-	React.useEffect(() => {
-		if (drawerRef.current && props.isOpen) {
-			drawerRef.current.focus();
-		}
-	}, [props.isOpen]);
-
-	const batchClickHandler = (e: React.MouseEvent<HTMLElement>, callback?: (e: React.MouseEvent<HTMLElement>) => void) => {
-		props.onClose && props.onClose(e);
-		callback?.(e);
-	};
-
-	const recurseChildren = (children: any): any => {
-		if (!children) {
-			return null;
-		}
-		return React.Children.map(children, (child, i) => {
-			if (React.isValidElement<IBoxComponentProps>(child) && child.type === DrawerCloseButton) {
-				return React.cloneElement(child, {
-					children: recurseChildren(child.props.children),
-					key: i,
-					onClick: (e) => batchClickHandler(e, child.props.onClick)
-				} as IBoxComponentProps);
+		const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+			if (e.key === 'Escape') {
+				props.onClose && props.onClose();
 			}
+		};
 
-			if (React.isValidElement<IDrawerOverlayComponentProps>(child) && child.type === DrawerOverlay) {
-				return React.cloneElement(child, {
-					children: recurseChildren(child.props.children),
-					isOpen: child.props.isOpen ? child.props.isOpen : props.isOpen,
-					key: i,
-					onClick: props.closeOnOverlayClick ? (e) => batchClickHandler(e, child.props.onClick) : child.props.onClick
-				} as IDrawerOverlayComponentProps);
+		React.useEffect(() => {
+			if (drawerRef.current && props.isOpen) {
+				drawerRef.current.focus();
 			}
+		}, [props.isOpen]);
 
-			if (React.isValidElement<IDrawerContentComponentProps>(child) && child.type === DrawerContent) {
-				return React.cloneElement(child, {
-					children: recurseChildren(child.props.children),
-					isOpen: child.props.isOpen ? child.props.isOpen : props.isOpen,
-					key: i,
-					onClick: (e: React.MouseEvent<HTMLElement>) => {
-						e.stopPropagation();
-						child.props.onClick && child.props.onClick(e);
-					},
-					placement: child.props.placement ? child.props.placement : props.placement,
-					size: child.props.size ? child.props.size : props.size
-				} as IDrawerContentComponentProps);
+		const batchClickHandler = (e: React.MouseEvent<HTMLElement>, callback?: (e: React.MouseEvent<HTMLElement>) => void) => {
+			props.onClose && props.onClose(e);
+			callback?.(e);
+		};
+
+		const recurseChildren = (children: any): any => {
+			if (!children) {
+				return null;
 			}
+			return React.Children.map(children, (child, i) => {
+				if (React.isValidElement<IBoxComponentProps>(child) && child.type === DrawerCloseButton) {
+					return React.cloneElement(child, {
+						children: recurseChildren(child.props.children),
+						key: i,
+						onClick: (e) => batchClickHandler(e, child.props.onClick)
+					} as IBoxComponentProps);
+				}
 
-			if (React.isValidElement(child) && (child.props as any).children) {
-				return React.cloneElement(child, { key: i, children: recurseChildren((child.props as any).children) } as any);
-			}
+				if (React.isValidElement<IDrawerOverlayComponentProps>(child) && child.type === DrawerOverlay) {
+					return React.cloneElement(child, {
+						children: recurseChildren(child.props.children),
+						isOpen: child.props.isOpen ? child.props.isOpen : props.isOpen,
+						key: i,
+						onClick: closeOnOverlayClick ? (e) => batchClickHandler(e, child.props.onClick) : child.props.onClick
+					} as IDrawerOverlayComponentProps);
+				}
 
-			return child;
-		});
-	};
-	return (
-		<StyledDrawer
-			{...props}
-			onKeyDown={handleKeyDown}
-			setRef={(ref: HTMLElement) => (drawerRef.current = ref)}
-			tabIndex={0}
-			children={recurseChildren(props.children)}
-		/>
-	);
-});
+				if (React.isValidElement<IDrawerContentComponentProps>(child) && child.type === DrawerContent) {
+					return React.cloneElement(child, {
+						children: recurseChildren(child.props.children),
+						isOpen: child.props.isOpen ? child.props.isOpen : props.isOpen,
+						key: i,
+						onClick: (e: React.MouseEvent<HTMLElement>) => {
+							e.stopPropagation();
+							child.props.onClick?.(e);
+						},
+						placement: child.props.placement || placement,
+						size: child.props.size || size
+					} as IDrawerContentComponentProps);
+				}
 
-Drawer.defaultProps = {
-	className: '',
-	closeOnOverlayClick: true,
-	placement: 'right',
-	size: 'sm',
-	style: {}
-};
+				if (React.isValidElement(child) && (child.props as any).children) {
+					return React.cloneElement(child, { key: i, children: recurseChildren((child.props as any).children) } as any);
+				}
+
+				return child;
+			});
+		};
+		return (
+			<StyledDrawer
+				{...props}
+				closeOnOverlayClick={closeOnOverlayClick}
+				placement={placement}
+				size={size}
+				onKeyDown={handleKeyDown}
+				setRef={(ref: HTMLElement) => (drawerRef.current = ref)}
+				tabIndex={0}
+				children={recurseChildren(props.children)}
+			/>
+		);
+	}
+);
 
 Drawer.displayName = 'Drawer';
 
@@ -154,11 +151,6 @@ export const DrawerContent: React.FC<IDrawerContentComponentProps> = withMooskin
 	return <DrawerContentComponent {...props} />;
 });
 
-DrawerContent.defaultProps = {
-	className: '',
-	style: {}
-};
-
 DrawerContent.displayName = 'DrawerContent';
 
 /**
@@ -167,11 +159,6 @@ DrawerContent.displayName = 'DrawerContent';
 export const DrawerHeader: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledDrawerHeader boxAs="header" {...props} />;
 });
-
-DrawerHeader.defaultProps = {
-	className: '',
-	style: {}
-};
 
 DrawerHeader.displayName = 'DrawerHeader';
 
@@ -182,11 +169,6 @@ export const DrawerBody: React.FC<IBoxComponentProps> = withMooskinContext((prop
 	return <StyledDrawerBody {...props} />;
 });
 
-DrawerBody.defaultProps = {
-	className: '',
-	style: {}
-};
-
 DrawerBody.displayName = 'DrawerBody';
 
 /**
@@ -196,11 +178,6 @@ export const DrawerFooter: React.FC<IBoxComponentProps> = withMooskinContext((pr
 	return <StyledDrawerFooter boxAs="footer" {...props} />;
 });
 
-DrawerFooter.defaultProps = {
-	className: '',
-	style: {}
-};
-
 DrawerFooter.displayName = 'DrawerFooter';
 
 /**
@@ -209,11 +186,6 @@ DrawerFooter.displayName = 'DrawerFooter';
 export const DrawerCloseButton: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledDrawerCloseButton {...props} children="close" className={`notranslate ${props.className}`} />;
 });
-
-DrawerCloseButton.defaultProps = {
-	className: '',
-	style: {}
-};
 
 DrawerCloseButton.displayName = 'DrawerCloseButton';
 
@@ -233,10 +205,5 @@ export const DrawerOverlay: React.FC<IDrawerOverlayComponentProps> = withMooskin
 		</Transition>
 	);
 });
-
-DrawerOverlay.defaultProps = {
-	className: '',
-	style: {}
-};
 
 DrawerOverlay.displayName = 'DrawerOverlay';

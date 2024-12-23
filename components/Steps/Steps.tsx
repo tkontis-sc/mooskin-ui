@@ -88,11 +88,6 @@ export const Steps: React.FC<IStepsComponentProps> = withMooskinContext((props) 
 	return <StyledSteps {...props} children={recurseChildren(props.children)} />;
 });
 
-Steps.defaultProps = {
-	className: '',
-	style: {}
-};
-
 Steps.displayName = 'Steps';
 
 /**
@@ -101,11 +96,6 @@ Steps.displayName = 'Steps';
 export const Step: React.FC<IStepComponentProps> = withMooskinContext((props) => {
 	return <StyledStep {...props} />;
 });
-
-Step.defaultProps = {
-	className: '',
-	style: {}
-};
 
 Step.displayName = 'Step';
 
@@ -116,11 +106,6 @@ export const StepHeader: React.FC<IStepHeaderComponentProps> = withMooskinContex
 	return <StyledStepHeader {...props} />;
 });
 
-StepHeader.defaultProps = {
-	className: '',
-	style: {}
-};
-
 StepHeader.displayName = 'StepHeader';
 
 /**
@@ -130,11 +115,6 @@ export const StepContent: React.FC<IStepCommonComponentProps> = withMooskinConte
 	return <StyledStepContent {...props} />;
 });
 
-StepContent.defaultProps = {
-	className: '',
-	style: {}
-};
-
 StepContent.displayName = 'StepContent';
 
 /**
@@ -143,10 +123,5 @@ StepContent.displayName = 'StepContent';
 const StepArrow: React.FC<IStepCommonComponentProps> = withMooskinContext((props) => {
 	return <StyledStepArrow {...props} />;
 });
-
-StepArrow.defaultProps = {
-	className: '',
-	style: {}
-};
 
 StepArrow.displayName = 'StepArrow';

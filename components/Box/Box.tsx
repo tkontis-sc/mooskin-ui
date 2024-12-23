@@ -14,12 +14,11 @@ import { Screens } from '../_utils/globals/screens';
  * Box
  */
 export const Box: React.FC<IBoxComponentProps> = withMooskinContext(
-	React.memo((props) => {
+	React.memo(({ transition = '0.2s all', ...props }) => {
 		const [shouldRender, setShouldRender] = React.useState(checkShouldRender(props.noRender || []));
 
 		React.useEffect(() => {
 			if (props.noRender) {
-
 				const onResize = () => {
 					if (props.noRender) setShouldRender(checkShouldRender(props.noRender));
 				};
@@ -33,7 +32,9 @@ export const Box: React.FC<IBoxComponentProps> = withMooskinContext(
 		}, []);
 
 		if (shouldRender) {
-			return <StyledBox ref={(ref: HTMLElement) => props.setRef && props.setRef(ref)} {...props} as={props.boxAs} />;
+			return (
+				<StyledBox ref={(ref: HTMLElement) => props.setRef && props.setRef(ref)} {...props} transition={transition} as={props.boxAs} />
+			);
 		}
 
 		return null;
@@ -49,12 +50,6 @@ const checkShouldRender = (noRender: Array<ScreenType>) => {
 	});
 
 	return !found;
-};
-
-Box.defaultProps = {
-	className: '',
-	style: {},
-	transition: '0.2s all'
 };
 
 Box.displayName = 'Box';

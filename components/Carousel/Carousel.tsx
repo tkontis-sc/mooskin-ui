@@ -16,28 +16,41 @@ import { StyledCarousel, StyledDot } from './styles';
 /**
  * Carousel
  */
-export const Carousel: React.FC<ICarouselComponentProps> = (props) => {
-	const renderCustomDot = () => (props.customDot ? props.customDot : <StyledDot />);
-	return <StyledCarousel customPaging={renderCustomDot} {...props} />;
-};
-
-Carousel.defaultProps = {
-	accessibility: true,
-	// arrows: true,
-	autoplaySpeed: 3000,
-	centerPadding: '50px',
-	className: '',
-	dots: true,
-	dotsClass: 'slick-dots',
-	draggable: true,
-	easing: 'linear',
-	// infinite: true,
-	pauseOnHover: true,
-	slide: 'div',
-	slidesToScroll: 3,
-	slidesToShow: 3,
-	speed: 500,
-	swipe: true
+export const Carousel: React.FC<ICarouselComponentProps> = ({
+	accessibility = true,
+	autoplaySpeed = 3000,
+	centerPadding = '50px',
+	className = '',
+	dots = true,
+	dotsClass = 'slick-dots',
+	draggable = true,
+	easing = 'linear',
+	pauseOnHover = true,
+	slide = 'div',
+	slidesToScroll = 3,
+	slidesToShow = 3,
+	speed = 500,
+	swipe = true,
+	...props
+}) => {
+	const propsWithDefaults = {
+		accessibility,
+		autoplaySpeed,
+		centerPadding,
+		className,
+		dots,
+		dotsClass,
+		draggable,
+		easing,
+		pauseOnHover,
+		slide,
+		slidesToScroll,
+		slidesToShow,
+		speed,
+		swipe
+	};
+	const renderCustomDot = () => props.customDot || <StyledDot />;
+	return <StyledCarousel customPaging={renderCustomDot} {...props} {...propsWithDefaults} />;
 };
 
 Carousel.displayName = 'Carousel';
@@ -45,10 +58,5 @@ Carousel.displayName = 'Carousel';
 export const CustomDot: React.FC<IBoxComponentProps> = withMooskinContext((props) => {
 	return <StyledDot w={[15, 15, 9, 9]} h={[15, 15, 9, 9]} {...props} />;
 });
-
-CustomDot.defaultProps = {
-	className: '',
-	style: {}
-};
 
 CustomDot.displayName = 'CustomDot';

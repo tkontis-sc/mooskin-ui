@@ -12,14 +12,8 @@ import { StyledLayout } from './styles';
 /**
  * Layout
  */
-export const Layout: React.FC<ILayoutComponentProps> = withMooskinContext((props) => {
-	return <StyledLayout {...props} />;
+export const Layout: React.FC<ILayoutComponentProps> = withMooskinContext(({ spacing = 15, ...props }) => {
+	return <StyledLayout spacing={spacing} {...props} />;
 });
-
-Layout.defaultProps = {
-	className: '',
-	spacing: 15,
-	style: {}
-};
 
 Layout.displayName = 'Layout';
